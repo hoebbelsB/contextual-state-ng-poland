@@ -26,7 +26,12 @@ export class DemoThreeComponent {
   /** async start **/
   createState = () =>
     this.searchTerm$.pipe(
-      switchMap(term => this.movieService.searchMovies(term))
+      switchMap(term => this.movieService.searchMovies(term).pipe(
+        map(movies => ({
+          movies: [...movies],
+        })),
+        catchError(() => of({ error: true }))
+      ))
     );
 
   /** async final **/
@@ -42,7 +47,7 @@ export class DemoThreeComponent {
             return { movies };
           }),
           catchError(e =>
-            of({ loading: false, movies: movieCache, error: true })
+            of({ loading: false, error: true })
           ),
           /!** when we start the search, emit loading true + cached movies **!/
           startWith({ loading: true, movies: movieCache, error: false })
