@@ -1,0 +1,235 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --palette-background-default: #fafafa;
+  --palette-text-primary: rgba(0, 0, 0, 0.87);
+  --palette-text-secondary: rgba(0, 0, 0, 0.54);
+  --palette-text-disabled: rgba(0, 0, 0, 0.38);
+  --palette-divider: rgba(0, 0, 0, 0.12);
+  --palette-action-active: rgba(0, 0, 0, 0.54);
+  --palette-action-hover: rgba(0, 0, 0, 0.04);
+  --palette-action-hover-opacity: 0.04;
+  --palette-action-selected: rgba(0, 0, 0, 0.08);
+  --palette-action-disabled: rgba(0, 0, 0, 0.26);
+  --palette-action-disabled-background: rgba(0, 0, 0, 0.12);
+  --palette-background-paper: #fff;
+  --palette-primary-main: #14b8a2;
+  --palette-primary-main-rgb: 20, 184, 162;
+  --palette-primary-dark: #0e8071;
+  --palette-primary-light: #43c6b4;
+  --palette-primary-contrast-text: rgba(0, 0, 0, 0.87);
+  --palette-secondary-main: #b80040;
+  --palette-secondary-main-rgb: 184, 0, 64;
+  --palette-secondary-dark: #80002c;
+  --palette-secondary-light: #c63366;
+  --palette-secondary-contrast-text: #fff;
+  --palette-warning-main: #b5b800;
+  --palette-warning-dark: #7e8000;
+  --palette-warning-light: #c3c633;
+  --palette-toggle-light-light: #ffb74d;
+  --palette-custom-lightBlue: #add8e6;
+  --palette-warning-contrast-text: rgba(0, 0, 0, 0.87);
+  --background-blend-gradient: linear-gradient(
+      rgba(255, 255, 255, 0) 68%,
+      rgb(255, 255, 255) 100%
+  );
+  --text-sm: 1.25rem;
+  --text-md: 1.5rem;
+  --text-lg: 1.75rem;
+  --text-xl: 2rem;
+}
+
+/* normalize */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--palette-background-default);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    -webkit-scroll-behavior: auto;
+    -moz-scroll-behavior: auto;
+    -ms-scroll-behavior: auto;
+    scroll-behavior: auto;
+  }
+}
+
+dialog, iframe {
+  border: 0;
+}
+
+dialog {
+  border: 0;
+  margin: auto;
+  overflow: visible;
+}
+
+form,
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+
+/* typography */
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@media only screen and (max-width: 1500px) {
+  html {
+    font-size: 57.5%;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: normal;
+  color: var(--palette-text-secondary);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  color: var(--palette-text-primary);
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.25rem;
+  color: var(--palette-secondary-main);
+}
+
+header {
+  margin-bottom: 2rem;
+  contain: content;
+}
+
+article {
+  @media only screen and (max-width: 1462.5px) {
+    padding-right: 3rem;
+    padding-left: 3rem;
+    margin-top: 3rem;
+  }
+
+  @media only screen and (max-width: 1300px) {
+    padding-right: 2rem;
+    padding-left: 2rem;
+    margin-top: 2rem;
+  }
+
+  padding-right: 4rem;
+  padding-left: 4rem;
+  margin-top: 4rem;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .title {
+    font-size: 2.125rem;
+  }
+}
+
+/* components */
+
+.loader {
+  display: grid;
+  place-items: center;
+  min-width: 150px;
+  min-height: 150px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  &:after {
+    content: ' ';
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--theme-borderRadius-circle);
+    background-color: var(--palette-primary-dark);
+    box-shadow: -5rem 0 0 var(--palette-primary-main);
+    animation: circle-classic 1s ease-in-out infinite alternate;
+  }
+
+}
+
+.movie-list {
+  padding: 0 .5rem;
+  .loader {
+    top: -150px;
+  }
+}
+
+.loader.center-v {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes circle-classic {
+  0% {
+    opacity: 0.1;
+    transform: rotate(0deg) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(360deg) scale(1.2);
+  }
+}

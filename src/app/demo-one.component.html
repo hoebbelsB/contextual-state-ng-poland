@@ -1,0 +1,62 @@
+<div class="demo-panel">
+  <div class="panel-group">
+    <h3>State</h3>
+    <div class="btn-group">
+      <button class="btn" (click)="reset()">↻ reset</button>
+      <button class="btn" (click)="showError()">x error</button>
+    </div>
+  </div>
+</div>
+<h2 class="title">Single Shot</h2>
+<!-- error template -->
+<ng-template #error>
+  <div class="error context">
+    <img width="32" height="32" src="/assets/sad.svg" alt="" /><strong
+  >We experienced an error</strong
+  >
+  </div>
+</ng-template>
+
+<!-- suspense template -->
+<ng-template #loader>
+  <div class="loader"></div>
+</ng-template>
+
+
+<!-- rxLet final -->
+<!--<div
+  class="movie-list"
+  *rxLet="
+    state$;
+    let movies;
+    suspense: loader;
+    error: error;
+  "
+>
+  <movie-card *ngFor="let movie of movies" [movie]="movie">
+  </movie-card>
+</div>-->
+
+<!-- async final -->
+<!--<div class="movie-list"
+     *ngIf="state$ | async as state; else: loader">
+
+  <ng-container *ngIf="state.error; then: error"></ng-container>
+
+  <movie-card
+    *ngFor="let movie of state.movies"
+    [movie]="movie"
+  >
+  </movie-card>
+
+</div>-->
+
+<!-- start -->
+<div class="movie-list">
+  <movie-card
+    *ngFor="let movie of state$ | async"
+    [movie]="movie"
+  >
+  </movie-card>
+</div>
+
